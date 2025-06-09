@@ -1,4 +1,4 @@
-package com.example.turbinanouacall
+package ro.turbinanoua.calldetector
 
 import android.content.BroadcastReceiver
 import android.content.Context
@@ -15,9 +15,12 @@ class CallReceiver : BroadcastReceiver() {
             if (state == TelephonyManager.EXTRA_STATE_RINGING) {
                 val incomingNumber = intent.getStringExtra(TelephonyManager.EXTRA_INCOMING_NUMBER)
 
-                // Dacă numărul există, îl trimitem la BubbleUploader
+                // Dacă numărul există, îl trimitem mai departe, specificând sursa
                 if (incomingNumber != null) {
-                    BubbleUploader.sendPhoneNumber(context, incomingNumber)
+                    // #################### MODIFICARE ####################
+                    // Am adăugat parametrul "sursa" cu valoarea "Apel Telefonic"
+                    MainActivity.sendPhoneNumber(context, incomingNumber, "Apel Telefonic")
+                    // ################## SFÂRȘIT MODIFICARE #################
                 }
             }
         }
